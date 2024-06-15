@@ -1,4 +1,4 @@
-<div align="center>
+<div align="center">
   <h2>The Quiz</h2>
   <a href="https://github.com/VPYen/TheQuiz">
     <img src="" alt="" />
