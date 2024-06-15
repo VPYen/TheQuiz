@@ -1,16 +1,15 @@
 <div align="center">
-  <h3>The Quiz</h3>
+  <h2>The Quiz</h2>
   <a href="https://github.com/VPYen/TheQuiz">
-    <img src="" alt="" />
+    <img src="./the-quiz/src/assets/images/test.png" alt="" />
   </a>
-  <h5>
+  <h4>
     A Full Stack Application for Creating Quizzes and Study Guides
-  </h5>
+  </h4>
 </div>
+<br />
 
----
-
-## Technologies & Libraries
+### Technologies & Libraries
 [![React][React.js]][React-url] [![Docker][Docker]][Docker-url] [![Postgresql][Postgresql]][Postgresql-url]
 
 
