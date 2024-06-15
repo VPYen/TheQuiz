@@ -14,7 +14,7 @@
 ---
 <!-- Technologies & Libraries -->
 ### Technologies & Libraries
-[![React][React.js]][React-url] [![Docker][Docker]][Docker-url] [![Postgresql][Postgresql]][Postgresql-url]
+[![React][React.js]][React-url] [![Node.js][Node.js]][Node-url] [![Docker][Docker]][Docker-url] [![Postgresql][Postgresql]][Postgresql-url]
 
 <br/>
 
@@ -50,3 +50,5 @@ Distributed under the GNU GPLv3. See [License](./LICENSE) for more information.
 [Docker-url]: https://www.docker.com
 [Postgresql]: https://img.shields.io/badge/Postgresql-23272f?style=for-the-badge&logo=postgresql&logoColor=%234f8ec1
 [Postgresql-url]: https://www.postgresql.org/
+[Node.js]: https://img.shields.io/badge/Node.js-23272f?style=for-the-badge&logo=node.js
+[Node-url]: https://nodejs.org
