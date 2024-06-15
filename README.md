@@ -10,15 +10,36 @@
   </h4>
 </div>
 
----
 
+---
+<!-- Technologies & Libraries -->
 ### Technologies & Libraries
 [![React][React.js]][React-url] [![Docker][Docker]][Docker-url] [![Postgresql][Postgresql]][Postgresql-url]
 
+<br/>
 
+<!-- Contributing -->
+### Contributing
+---
 
+We welcome contributions from the community! To contribute, follow these steps:
 
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/[feature-title]`).
+3. Make your changes and commit them (`git commit -am 'Add brief meaningful commit message'`).
+4. Push to the branch (`git push origin feature/[feature-title]`).
+5. Create a new Pull Request.
 
+For major changes, please open an issue first to discuss what you would like to change.
+
+Read our [contribution guidelines](./CONTRIBUTING.md) for more details.
+<br/>
+
+<!-- LICENSE -->
+### License
+---
+
+Distributed under the GNU GPLv3. See [License](./LICENSE) for more information.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
