@@ -15,8 +15,11 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         answer: {
-            type: DataTypes.Array(DataTypes.STRING),
+            type: SequelizeString,
             allowNull: false
+        },
+        options: {
+            type: DataTypes.ARRAY(DataTypes.STRING)
         }
     });
     
