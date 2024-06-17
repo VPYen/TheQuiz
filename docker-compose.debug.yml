@@ -1,11 +1,12 @@
-version: '3.4'
+version: '3.8'
 
 services:
-  thequiz:
-    image: thequiz
+  thequiz-app:
+    image: the-quiz
     build:
       context: the-quiz
       dockerfile: ./Dockerfile
+    container_name: theQuiz-appDebug-c
     environment:
       NODE_ENV: development
     ports:

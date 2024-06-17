@@ -1,7 +1,5 @@
 // Inquiry Model
 
-const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize, Sequelize) => {
     const Inquiry = sequelize.define("Inquiry", {
         question: {
@@ -10,18 +8,18 @@ module.exports = (sequelize, Sequelize) => {
             unique: true
         },
         type: {
-            type: Sequelize.String,
-            defaultValue: "standard", // options: standard, multipleanswer, multiplechoice
+            type: Sequelize.STRING,
+            defaultValue: "standard", // options: standard, multiple-answer, multiple-choice
             allowNull: false
         },
         answer: {
-            type: SequelizeString,
+            type: Sequelize.STRING,
             allowNull: false
         },
         options: {
-            type: DataTypes.ARRAY(DataTypes.STRING)
+            type: Sequelize.ARRAY(Sequelize.STRING)
         }
     });
     
-    return Category;
+    return Inquiry;
 };

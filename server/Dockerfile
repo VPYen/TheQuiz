@@ -35,7 +35,7 @@ RUN  chown -R node /usr/src/app
 USER node
 
 # Expose the port that the application listens on.
-EXPOSE 8080
+EXPOSE 8000
 
 # Run the application in dev mode to use with Compose watch feature
 CMD ["npm", "run", "dev"]
