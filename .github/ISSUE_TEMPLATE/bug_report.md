@@ -14,10 +14,13 @@ A clear and concise description of what the bug is.
 Steps to reproduce the behavior:
 <!--- 1. Go to '...' --->
 1. >
+
 <!--- 2. Click on '....' --->
 2. >
+
 <!--- 3. Scroll down to '....' --->
 3. >
+
 <!--- 4. See error --->
 4. > 
 
@@ -30,18 +33,23 @@ Steps to reproduce the behavior:
 **Desktop (please complete the following information):**
 <!--- OS: [e.g. iOS] --->
  - > OS:
+
 <!--- Browser: [e.g. chrome, safari] ---> 
 - > Browser: 
+
 <!--- Version: [e.g. 22] ---> 
  - > Version: 
 
 **Smartphone (please complete the following information):**
 <!--- Device: [e.g. iphone 14] --->
  - > Device: 
+
 <!--- OS: [e.g. iOS] --->
  - > OS:  
+
 <!--- Browser: [e.g. chrome, safari] ---> 
 - > Browser:  
+
 <!--- Version: [e.g. 22] ---> 
  - > Version:
 
