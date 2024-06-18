@@ -42,9 +42,9 @@ This will simultaneously run the database, back end, and front end services.
 We welcome contributions from the community! To contribute, follow these steps:
 
 1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/[feature-title]`).
+2. Create a new branch (example: `git checkout -b feat:feature-title`).
 3. Make your changes and commit them (`git commit -am 'Add brief meaningful commit message'`).
-4. Push to the branch (`git push origin feature/[feature-title]`).
+4. Push to the branch (example: `git push origin feat:feature-title`).
 5. Create a new Pull Request.
 
 For major changes, please open an issue first to discuss what you would like to change.
