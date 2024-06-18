@@ -26,12 +26,14 @@ app.use((error, req, res, next) => {
     res.status(status).json({message: message});
 });
 
-// Sync Database
+// Create & Sync Database
 const db = require("./models/index.js");
-db.sequelize.sync().then(() => {
-    console.log("Database Synced");
-}).catch((err) => {
-    console.log(`Database failed to sync: ${err.message}`)
+db.setupDB().then(() => {
+    db.sequelize.sync().then(() => {
+        console.log("Database Synced");
+    }).catch((err) => {
+        console.log(`Database failed to sync: ${err.message}`)
+    });
 });
 
 // Apply Server Routes

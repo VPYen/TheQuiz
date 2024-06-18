@@ -56,20 +56,23 @@ module.exports = {
         console.log("Client header: ", req.rawHeaders);
         console.log("Request Body: ", req.body);
 
-        Category.findOrCreate({where: { name: req.body.name },
-        }).spread(function(category, created) {
-            if (created) {
-                console.log("newCategory success");
-                res.json({success:"Successfully created new category", type:"newCategory", category: category});
-            }else {
-                console.log("newCategory already exists: ", category);
-                res.json({success:"Category already exists, returned existing category", type:"newCategory", category: category});
-            }
+        const [category, created] = await Category.findOrCreate({
+            where: {
+                name: req.body.name
+            },
         }).catch(function(err) {
             console.log("newCategory error: ", error);
             res.json({error: err.message, type: "newCategory"});
             return;
         });
+        
+        if (created) {
+            console.log("newCategory success");
+            res.json({success:"Successfully created new category", type:"newCategory", category: category});
+        }else {
+            console.log("newCategory already exists: ", category);
+            res.json({success:"Category already exists, returned existing category", type:"newCategory", category: category});
+        }
     },
 
     editCategory: function(req, res) {
