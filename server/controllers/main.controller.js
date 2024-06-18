@@ -1,12 +1,12 @@
 // Controller
 
-const db = require("./../models/index.js");
+const db = require("./../models");
 const Op = db.Sequelize.Op;
 
 // Model
-const Category = db.Category;
-const Test = db.Test;
-const Inquiry = db.Inquiry;
+const Category = db.category;
+const Test = db.test;
+const Inquiry = db.inquiry;
 
 // Local Functions
 function isEmpty(obj) {
