@@ -1,6 +1,6 @@
 // Controller
 
-const db = require("../models/index.js");
+const db = require("./../models/index.js");
 const Op = db.Sequelize.Op;
 
 // Model
@@ -8,13 +8,80 @@ const Category = db.Category;
 const Test = db.Test;
 const Inquiry = db.Inquiry;
 
+// Local Functions
+function isEmpty(obj) {
+    for(let prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
+};
+
 module.exports = {
+// Index
     index: function(req, res) {
         console.log("Client request index");
         console.log("Client header: ", req.rawHeaders);
         res.json("Connection Successful");
     },
+
 // Category Functions
+    getOneCategory: function(req, res) {
+        console.log("Client request getOneCategory");
+        console.log("Client header: ", req.rawHeaders);
+        // *** get one function here ***
+    },
+
+    getAllCategories: async function(req, res) {
+        console.log("Client request getAllCategories");
+        console.log("Client header: ", req.rawHeaders);
+        
+        const categories = await Category.findAll()
+        .catch(function(err) {
+            console.log("getAllCategories error: ", err);
+            res.json({error: err.message});
+            return;
+        });
+        if (categories === null) {
+            console("getAllCategories null: ", categories)
+            res.json({error: "Unable to find or does not exists", type: "getAllCategories"});
+        }else {
+            console.log("getAllCategories success");
+            res.json({success:"Successfully obtained categories", type:"getAllCategories", categories: categories});
+        }
+    },
+
+    newCategory: async function(req, res) {
+        console.log("Client request getAllCategories");
+        console.log("Client header: ", req.rawHeaders);
+        console.log("Request Body: ", req.body);
+
+        Category.findOrCreate({where: { name: req.body.name },
+        }).spread(function(category, created) {
+            if (created) {
+                console.log("newCategory success");
+                res.json({success:"Successfully created new category", type:"newCategory", category: category});
+            }else {
+                console.log("newCategory already exists: ", category);
+                res.json({success:"Category already exists, returned existing category", type:"newCategory", category: category});
+            }
+        }).catch(function(err) {
+            console.log("newCategory error: ", error);
+            res.json({error: err.message, type: "newCategory"});
+            return;
+        });
+    },
+
+    editCategory: function(req, res) {
+        // *** edit function here ***
+    },
+
+    deleteCategory: function(req, res) {
+        // *** delete function here ***
+    }
+
+
+
 // Test Functions
 // Inquiry Functions
 };

@@ -1,12 +1,14 @@
+// Server
+
 // Libraries
 const bodyParser = require("body-parser")
 const express = require("express");
 
 const app = express();
 
-// parse requests of content-type - application/json
+// Parse requests of content-type - application/json
 app.use(bodyParser.json());
-// parse requests of content-type - application/x-www-form-urlencoded
+// Parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 // CORS
@@ -32,8 +34,11 @@ db.sequelize.sync().then(() => {
     console.log(`Database failed to sync: ${err.message}`)
 });
 
-// set port, listen for requests
+// Apply Server Routes
+require("./config/routes.config.js")(app);
+
+// Set Port and Listen for Requests
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+app.listen(PORT, function() {
+    console.log(`The Quiz Server: listening on port ${PORT}`);
 });
