@@ -18,6 +18,23 @@
 
 <br/>
 
+<!-- Platform Structure -->
+### Platform Structure
+---
+- Front End: React Application
+- Back End : Node.js w/ Express as an API serving the database with Sequelize for ORM
+- Database : PostgreSQL relational database
+- Container: Docker for agnostic platform development and production
+<br />
+
+<!-- Local Setup -->
+### Local Setup
+---
+Use ```docker compose up -d ``` to build the image containers and run the containers in docker.
+
+This will simultaneously run the database, back end, and front end services.
+<br />
+
 <!-- Contributing -->
 ### Contributing
 ---
