@@ -1,0 +1,66 @@
+services:
+  # Database 
+  thequiz-db:
+    image: postgres:16
+    container_name: thequiz-db_c
+    restart: always
+    environment:
+      - POSTGRES_DB=thQuizDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - 5432:5432
+    networks:
+      - shared-network
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 15s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  # Server
+  thequiz-server:
+    image: thequiz-server_i
+    container_name: thequiz-server_c
+    restart: unless-stopped
+    depends_on:
+      thequiz-db:
+        condition: service_healthy
+    build:
+      context: ./server
+    environment:
+      - DB_HOST=thequiz-db
+      - DB_DATABASE=theQuizDB
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=admin
+      - DB_POST=5432
+    stdin_open: true
+    tty: true
+    ports:
+      - 8000:8000
+    networks:
+      - shared-network
+
+  # App
+  thequiz-app:
+    image: thequiz-app_i
+    container_name: thequiz-app_c
+    depends_on:
+      - thequiz-server
+    build:
+      context: ./the-quiz
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    networks:
+    - shared-network
+
+networks:
+  shared-network:
+
+volumes:
+  thequiz-db:
