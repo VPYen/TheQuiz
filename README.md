@@ -30,7 +30,7 @@
 <!-- Local Setup -->
 ### Local Setup
 ---
-Use ```docker compose up -d ``` to build the image containers and run the containers in docker.
+Use ```docker compose up -d ``` to build the image containers and run the containers in docker.\
 Remove ```-d``` flag if you want to run with terminal I/O in development environment.
 
 <br />
