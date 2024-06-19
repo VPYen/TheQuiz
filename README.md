@@ -1,6 +1,6 @@
 <div align="center">
   
-  <h2 border-bottom:0>The Quiz</h2>
+  <h3>The Quiz</h3>
 
   <a href="https://github.com/VPYen/TheQuiz">
     <img src="./the-quiz/src/assets/images/test.png" alt="" />
