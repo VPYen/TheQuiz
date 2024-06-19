@@ -3,7 +3,6 @@
 // Libraries
 const bodyParser = require("body-parser")
 const express = require("express");
-
 const app = express();
 
 // Parse requests of content-type - application/json
