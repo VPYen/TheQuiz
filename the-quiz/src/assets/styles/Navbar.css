@@ -1,1 +1,20 @@
 /* Navbar */
+
+#Navbar {
+    background: darkslategrey;
+    box-shadow: 0px -2px 8px -4px rgb(0 0 0 / 80%);
+}
+
+#Navbar .testIcon {
+    width: 30%;
+    height: 30%;
+}
+
+#Navbar .navbarDivider {
+    border: none;
+    height: 2px;
+
+    /* Set the hr color */
+    color: black;  /* old IE */
+    background-color: black;  /* Modern Browsers */
+}

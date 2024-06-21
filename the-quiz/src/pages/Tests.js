@@ -1,7 +1,7 @@
 // Libraries
 
 // Assets
-import "./assets/styles/Tests.css";
+import "./../assets/styles/Tests.css";
 
 // Components
 

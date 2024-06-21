@@ -1,7 +1,7 @@
 // Libraries
 
 // Assets
-import "./assets/styles/Question.css";
+import "./../assets/styles/Question.css";
 
 // Components
 

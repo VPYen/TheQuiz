@@ -1,7 +1,7 @@
 // Libraries
 
 // Assets
-import "./assets/styles/Login.css";
+import "./../assets/styles/Login.css";
 
 // Components
 

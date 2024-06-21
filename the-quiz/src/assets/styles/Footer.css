@@ -1,1 +1,15 @@
 /* Footer */
+
+#Footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 10%;
+}
+
+#Footer .container {
+    margin: 0 auto;
+    max-width:  90vw;
+    padding: 1%;
+}
+
