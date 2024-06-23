@@ -13,7 +13,7 @@ import Categories from "./pages/Categories";
 
 function App() {
   return (
-    <div id="App">
+    <div id="App" >
       <Navbar />
         <Routes>
           <Route index element={<Categories />} />

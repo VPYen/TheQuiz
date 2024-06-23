@@ -36,8 +36,8 @@ function Navbar() {
                 <li><a className="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <li className="nav-item">
+              <a className="nav-link disabled" aria-disabled="true">Disabled</a>
             </li>
           </ul>
           <button><h4 className="d-flex">Login/Logout</h4></button>

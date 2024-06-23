@@ -1,18 +1,28 @@
 // Libraries
 
-function CategoriesList({items, onItemSelect}) {
-    let renderObject;
+// Components
+import CategoryItem from "./CategoryItem";
 
+function CategoriesList({items, onItemSelect, modalToggle}) {
+    let renderObject;
+    
     if (items){
-        renderObject = items.map(item => {
-           // map items to Category Item 
-        });
+        renderObject = items.map(item => 
+           <CategoryItem 
+                key={item.id}
+                item={item}
+                onItemSelect={onItemSelect}
+                modalToggle={modalToggle}
+            />
+        );
+    }else {
+        renderObject = <p className="listError">Something went wrong...</p>
     }
 
     return(
-        <table>
-            
-        </table>
+       <div className="list">
+            {renderObject}
+       </div>
     );
 }
 

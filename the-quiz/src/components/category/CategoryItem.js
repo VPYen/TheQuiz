@@ -1,15 +1,13 @@
 // Libraries
 
-// Components
-import CategoriesList from "./CategoriesList";
-
-function CategoriesItem(props) {
+function CategoryItem({key, item, onItemSelect, modalToggle}) {
+    console.log(item);
     return(
-        <tr>
-            <td>
-
-            </td>
-        </tr>
+       <div className="item">
+            <p>
+              {item.name}  
+            </p>
+       </div>
     );
 }
 
