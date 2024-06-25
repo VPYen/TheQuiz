@@ -20,7 +20,7 @@ function CategoriesList({items, onItemSelect, modalToggle}) {
     }
 
     return(
-       <div className="list">
+       <div className="list row">
             {renderObject}
        </div>
     );

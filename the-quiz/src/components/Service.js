@@ -12,7 +12,7 @@ const Service = {
 // Categories
     async getAllCategories() {
         try {
-            const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+            const res = await fetch(`https://jsonplaceholder.typicode.com/albums/1/photos`);
             return res.json();
         }catch (error) {
             console.error(error);

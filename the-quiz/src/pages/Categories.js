@@ -26,8 +26,8 @@ function Categories(props) {
     }
   };
   
-  const getCategories = async () => {
-    await Service.getAllCategories()
+  const getCategories = () => {
+    Service.getAllCategories()
     .then(res => {
       setCategories(<CategoriesList items={res} onItemSelect={onItemSelect} modalToggle={handleModalToggle} />);
     });
@@ -44,6 +44,9 @@ function Categories(props) {
 
   return (
     <div id="Categories">
+      <div className="pageHeader mb-4">
+        <h1>Categories</h1>
+      </div>
       {categories}
     </div>
   );
