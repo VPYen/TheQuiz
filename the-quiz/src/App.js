@@ -15,10 +15,12 @@ function App() {
   return (
     <div id="App" >
       <Navbar />
+      <div className="mainBody">
         <Routes>
           <Route index element={<Categories />} />
           <Route path="/" exact element={<Categories />} />
         </Routes>
+      </div>
       <Footer />
     </div>
   );

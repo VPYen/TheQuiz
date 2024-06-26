@@ -1,9 +1,10 @@
 // Libraries
 
 // Components
+import TestItem from "./TestItem.js";
 
 
-function CategoriesItem({items, itemOnSelect}) {
+function TestsList({items, itemOnSelect}) {
     let renderObject;
 
     if (items){

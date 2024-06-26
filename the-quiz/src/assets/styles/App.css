@@ -27,5 +27,16 @@
 .item {
   width: 20rem;
   height: 12rem;
+  cursor: pointer;
+  border: 2px solid;
+  border-radius: 1em;
   border-color: rgb(114, 160, 193);
+}
+
+.item:hover {
+  border-color: rgba(211, 39, 76, 0.534);
+}
+
+.item:active {
+  border-color: white;
 }

@@ -1,7 +1,7 @@
 // Libraries
 
 // Components
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "./CategoryItem.js";
 
 function CategoriesList({items, onItemSelect, modalToggle}) {
     let renderObject;

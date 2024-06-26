@@ -1,7 +1,6 @@
 // Libraries
 
 // Components
-import TestsList from "./TestsList";
 
 function TestItem(props) {
     return(
