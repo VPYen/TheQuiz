@@ -1,9 +1,10 @@
 // Libraries
 
 // Assets
+import TestsList from  "./../test/TestsList.js";
 
 function CategoryItem({key, item, onItemSelect, modalToggle}) {
-    console.log(item);
+    
     return(
        <div className="item card m-3 p-2">
         <div className="card-body">

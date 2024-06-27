@@ -35,7 +35,7 @@ function Categories(props) {
   };
 
   const onSubmit = async (type, item) => {
-
+    
   };
 
   useEffect(() => {

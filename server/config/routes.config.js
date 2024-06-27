@@ -36,6 +36,27 @@ module.exports = function(app) {
     });
 
 // Test
+    // One Test
+    app.get(`${baseURL}/test/:testID`, function(req, res) {
+        main.getOneTest(req, res);
+    });
+
+    // New Test
+    app.put(`${baseURL}/test/new/:categoryID`, function(req, res) {
+        main.newTest(req, res);
+    });
+
+    // Edit Test
+    app.put(`${baseURL}/test/edit/:testID`, function(req, res) {
+        main.editTest(req, res);
+    });
+
+    // Delete Test
+    app.delete(`${baseURL}/test/del/:testID`, function(req, res) {
+        main.deleteTest(req, res);
+    });
 
 // Inquiry
+
+
 };
