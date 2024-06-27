@@ -18,12 +18,14 @@ function isEmpty(obj) {
 };
 
 module.exports = {
+
 // Index
     index: function(req, res) {
         console.log("Client request index");
         console.log("Client header: ", req.rawHeaders);
         res.json("Connection Successful");
     },
+
 
 // Category Functions
     getOneCategory: function(req, res) {
@@ -81,12 +83,44 @@ module.exports = {
 
     deleteCategory: function(req, res) {
         // *** delete function here ***
-    }
-
+    },
 
 
 // Test Functions
+    getOneTest: function(req, res) {
+        // ** get function here **
+    },
+
+    newTest: function(req, res) {
+        // ** new function here **
+    },
+
+    editTest: function(req, res) {
+        // ** edit function here **
+    },
+
+    deleteTest: function(req, res) {
+        // ** delete function here **
+    },
+
+
 // Inquiry Functions
+    getOneInquiry: function(req, res) {
+        // ** get function here **
+    },
+
+    newInquiry: function(req, res) {
+        // ** new function here **
+    },
+
+    editInquiry: function(req, res) {
+        // ** edit function here **
+    },
+
+    deleteInquiry: function(req, res) {
+        // ** delete function here **
+    }
+    
 };
 
 

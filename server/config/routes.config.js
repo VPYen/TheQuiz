@@ -57,6 +57,24 @@ module.exports = function(app) {
     });
 
 // Inquiry
+    // One Inquiry
+    app.get(`${baseURL}/inquiry/:inquiryID`, function(req, res) {
+        main.getOneInquiry(req, res);
+    });
 
+    // New Inquiry
+    app.put(`${baseURL}/inquiry/new/:testID`, function(req, res) {
+        main.newInquiry(req, res);
+    });
+
+    // Edit Inquiry
+    app.put(`${baseURL}/inquiry/edit/:inquiryID`, function(req, res) {
+        main.editInquiry(req, res);
+    });
+
+    // Delete Inquiry
+    app.delete(`${baseURL}/inquiry/del/:inquiryID`, function(req, res) {
+        main.deleteInquiry(req, res);
+    })
 
 };
