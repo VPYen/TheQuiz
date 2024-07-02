@@ -13,7 +13,7 @@ const Service = {
 // Categories
     async getOneCategory(categoryID) {
         try {
-            const res = await fetch(`${baseURL}/category${categoryID}`, {
+            const res = await fetch(`${baseURL}/category/${categoryID}`, {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
@@ -185,10 +185,87 @@ const Service = {
             console.error(error);
             return error;
         }
-    }
+    },
 
 // Inquiries
-    
+    async getOneInquiry(inquiryID) {
+        try {
+            const res = await fetch(`${baseURL}/inquiry/${inquiryID}`, {
+                method: "GET",
+                mode: "cors",
+                cache: "no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: "error",
+                referrerPolicy: "no-referrer",
+            });
+            return res.json();
+        }catch(error) {
+            console.error(error);
+            return error;
+        }
+    },
+
+    async newInquiry(testID, body) {
+        try {
+            const res = await fetch(`${baseURL}/inquiry/new/${testID}`, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: "error",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify(body),
+            });
+            return res.json();
+        }catch(error) {
+            console.error(error);
+            return error;
+        }
+    },
+
+    async editInquiry(inquiryID, body) {
+        try {
+            const res = await fetch(`${baseURL}/test/edit/${inquiryID}`, {
+                method: "PUT",
+                mode: "cors",
+                cache: "no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: "error",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify(body),
+            });
+            return res.json();
+        }catch(error) {
+            console.error(error);
+            return error;
+        }
+    },
+
+    async deleteInquiry(inquiryID) {
+        try {
+            const res = await fetch(`${baseURL}/inquiry/del/${inquiryID}`, {
+                method: "DELETE",
+                mode: "cors",
+                cache: "no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: "error",
+                referrerPolicy: "no-referrer",
+            });
+            return res.json();
+        }catch(error) {
+            console.error(error);
+            return error;
+        }
+    }
+
 };
 
 
