@@ -198,7 +198,6 @@ module.exports = {
         });
         console.log("deleteTest success");
         res.json({success: "Test deleted", type: "deleteTest"});
-
     },
 
 
@@ -224,16 +223,62 @@ module.exports = {
 
     },
 
-    newInquiry: function(req, res) {
-        // ** new function here **
+    newInquiry: async function(req, res) {
+        console.log("Client request newInquiry");
+        console.log("Client header: ", req.rawHeaders);
+
+        const [inquiry, created] = await Inquiry.findOrCreate({
+            where: {
+                question: req.body.question,
+                type: req.body.type,
+                answer: req.body.answer,
+                option: req.body.options
+            }
+        }).catch(function(err) {
+            console.log("newInquiry error: ", err);
+            res.json({error: err.message, type: "newInquiry"});
+            return;
+        });
+        if (created) {
+            console.log("newInquiry success");
+            res.json({success: "Successfully created new inquiry", type: "newInquiry", inquiry: inquiry});
+        }else {
+            console.log("newInquiry already exists: ", inquiry);
+            res.json({success: "Inquiry already exists, returned existing inquiry", type: "newInquiry", inquiry: inquiry});
+        }
+
     },
 
-    editInquiry: function(req, res) {
-        // ** edit function here **
+    editInquiry: async function(req, res) {
+        console.log("Client request editInquiry");
+        console.log("Client header: ", req.rawHeaders);
+
+        const inquiry = await Inquiry.update(req.body, {
+            where: {id: req.params.inquiryID},
+            return: true,
+            plain: true
+        }).catch(function(err) {
+            console.log("editInquiry error: ", err);
+            res.json({error: err.message, type: "editInquiry"});
+            return;
+        });
+        console.log("editInquiry success");
+        res.json({success: "Inquiry updated", type: "editInquiry", inquiry: inquiry});
     },
 
-    deleteInquiry: function(req, res) {
-        // ** delete function here **
+    deleteInquiry: async function(req, res) {
+        console.log("Client request deleteInquiry");
+        console.log("Client header: ", req.rawHeaders);
+
+        await Inquiry.destroy({
+            where: {id: req.params.inquiryID}
+        }).catch(function(err) {
+            console.log("deleteInquiry error: ", err);
+            res.json({error: err.message, type: "deleteInquiry"});
+            return;
+        });
+        console.log("deleteInquiry success");
+        res.json({success: "Inquiry deleted", type: "deleteInquiry"});
     }
 
 };
