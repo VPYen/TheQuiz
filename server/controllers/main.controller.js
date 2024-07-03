@@ -32,12 +32,7 @@ module.exports = {
         console.log("Client request getOneCategory");
         console.log("Client header: ", req.rawHeaders);
         
-        const category = await Category.findByPk(req.params.categoryID)
-        .catch(function(err) {
-            console.log("getOneCategory error: ", err);
-            res.json({error: err.message});
-            return;
-        });
+        const category = await Category.findByPk(req.params.categoryID);
         if (category === null) {
             console.log("getOneCategory null: ", category);
             res.json({error: "Unable to find or does not exist", type: "getOneCategory"});
@@ -52,12 +47,7 @@ module.exports = {
         console.log("Client request getAllCategories");
         console.log("Client header: ", req.rawHeaders);
         
-        const categories = await Category.findAll()
-        .catch(function(err) {
-            console.log("getAllCategories error: ", err);
-            res.json({error: err.message, type: "getAllCategories"});
-            return;
-        });
+        const categories = await Category.findAll();
         if (categories === null) {
             console("getAllCategories null: ", categories)
             res.json({error: "Unable to find or does not exist", type: "getAllCategories"});
@@ -76,18 +66,16 @@ module.exports = {
             where: {
                 name: req.body.name
             },
-        }).catch(function(err) {
-            console.log("newCategory error: ", err);
-            res.json({error: err.message, type: "newCategory"});
-            return;
         });
-        
         if (created) {
             console.log("newCategory success");
             res.json({success:"Successfully created new category", type:"newCategory", category: category});
-        }else {
+        }else if (category) {
             console.log("newCategory already exists: ", category);
             res.json({success:"Category already exists, returned existing category", type:"newCategory", category: category});
+        }else {
+            console.log("newCategory null: ", category);
+            res.json({error: "Category does not exist or unable to create", type: "newCategory"});
         }
     },
 
@@ -100,28 +88,31 @@ module.exports = {
             where: {id: req.params.categoryID},
             return: true,
             plain: true
-        }).catch(function(err) {
-            console.log("editCategory error: ", err);
-            res.json({error: err.message, type: "editCategory"});
-            return;
         });
-        console.log("editCategory success: ", category);
-        res.json({success: "Category updated", type: "editCategory", category: category});
+        if (category) {
+            console.log("editCategory success: ", category);
+            res.json({success: "Category updated", type: "editCategory", category: category});
+        }else {
+            console.log("editCategory null: ", category);
+            res.json({error: "Unable to edit category or does not exist", type:"editCategory"});
+        }
     },
 
     deleteCategory: async function(req, res) {
         console.log("Client request deleteCategory");
         console.log("Client header: ", req.rawHeaders);
 
-        await Category.destroy({
+        const instance = await Category.destroy({
             where: {id: req.params.categoryID}
-        }).catch(function(err) {
-            console.log("deleteCategory error: ", err);
-            res.json({error: err.message, type: "deleteCategory"});
-            return;
         });
-        console.log("deleteCategory success");
-        res.json({success: "Category deleted", type: "deleteCategory"});
+        console.log("deleteCategory instance: ",instance);
+        if (instance) {
+            console.log("deleteCategory success");
+            res.json({success: "Category deleted", type: "deleteCategory"});
+        }else {
+            console.log("deleteCategory error");
+            res.json({error: "Category does not exist or could not be deleted", type: "deleteCategory"});
+        }
     },
 
 
@@ -130,12 +121,7 @@ module.exports = {
         console.log("Client request getOneTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const test = await Test.findByPk(req.params.testID)
-        .catch(function(err) {
-            console.log("getOneTest error: ", err);
-            res.json({error: err.message, type: "getOneTest"});
-            return;
-        });
+        const test = await Test.findByPk(req.params.testID);
         if (test === null) {
             console.log("getOneTest null: ", test);
             res.json({error: "Could not find or does not exist", type: "getOneTest"})
@@ -143,6 +129,7 @@ module.exports = {
             console.log("getOneTest success");
             res.json({success: "Successfully obtained test", type: "getOneTest", test: test});
         }
+
     },
 
     newTest: async function(req, res) {
@@ -153,18 +140,18 @@ module.exports = {
             where: {
                 name: req.body.name,
                 description: req.body.description,
+                categoryID: req.params.categoryID
             },
-        }).catch(function(err) {
-            console.log("newTest error: ", err);
-            res.json({error: err.message, type: "newTest"});
-            return;
         });
         if (created) {
             console.log("newTest success");
             res.json({success: "Successfully created new test", type: "newTest", test: test});
-        }else {
+        }else if (test) {
             console.log("newTest already exists: ", test);
             res.json({success: "Test already exists, returned existing test", type: "newTest", test: test});
+        }else {
+            console.log("newTest null: ", test);
+            res.json({error: "Test does not exist or unable to create", type: "newTest"});
         }
     },
 
@@ -176,28 +163,31 @@ module.exports = {
             where: {id: req.params.testID},
             return: true,
             plain: true
-        }).catch(function(err) {
-            console.log("editTest error: ", err);
-            res.json({error: err.message, type: "editTest"});
-            return;
         });
-        console.log("editTest success");
-        res.json({success: "Test updated", type: "editTest", test: test});
+        if (test) {
+            console.log("editTest success");
+            res.json({success: "Test updated", type: "editTest", test: test});
+        }else{
+            console.log("editTest null: ", test);
+            res.json({error: "Unable to edit test or does not exist", type:"editTest"});
+        }
+
     },
 
     deleteTest: async function(req, res) {
         console.log("Client request deleteTest");
         console.log("Client header: ", req.rawHeaders);
 
-        await Test.destroy({
+        const instance = await Test.destroy({
             where: {id: req.params.testID}
-        }).catch(function(err) {
-            console.log("deleteTest error: ", err);
-            res.json({error: err.message, type: "deleteTest"});
-            return;
         });
-        console.log("deleteTest success");
-        res.json({success: "Test deleted", type: "deleteTest"});
+        if (instance) {
+            console.log("deleteTest success");
+            res.json({success: "Test deleted", type: "deleteTest"});
+        }else {
+            console.log("deleteTest error");
+            res.json({error: "Test does not exist or could not be deleted", type: "deleteTest"});
+        }
     },
 
 
@@ -206,21 +196,14 @@ module.exports = {
         console.log("Client request getOneInquiry");
         console.log("Client header: ", req.rawHeaders);
 
-        const inquiry = await Inquiry.findByPk(req.params.inquiryID)
-        .catch(function(err) {
-            console.log("getOneInquiry error: ", err);
-            res.json({error: err.message, type: "getOneInquiry"});
-            return;
-        });
+        const inquiry = await Inquiry.findByPk(req.params.inquiryID);
         if (inquiry === null) {
             console.log("getOneInquiry null: ", inquiry);
-            res.json({error: "Could not find or does not exist", type: "getOneInquiry"});
+            res.json({error: "Could not find inquiry or does not exist", type: "getOneInquiry"});
         }else {
             console.log("getOneInquiry success");
             res.json({success: "Successfully obtained inquiry", type: "getOneInquiry", inquiry: inquiry});
         }
-
-
     },
 
     newInquiry: async function(req, res) {
@@ -232,21 +215,20 @@ module.exports = {
                 question: req.body.question,
                 type: req.body.type,
                 answer: req.body.answer,
-                option: req.body.options
+                option: req.body.options,
+                testID: req.params.testID
             }
-        }).catch(function(err) {
-            console.log("newInquiry error: ", err);
-            res.json({error: err.message, type: "newInquiry"});
-            return;
         });
         if (created) {
             console.log("newInquiry success");
             res.json({success: "Successfully created new inquiry", type: "newInquiry", inquiry: inquiry});
-        }else {
+        }else if (inquiry) {
             console.log("newInquiry already exists: ", inquiry);
             res.json({success: "Inquiry already exists, returned existing inquiry", type: "newInquiry", inquiry: inquiry});
+        }else {
+            console.log("newInquiry null: ", inquiry);
+            res.json({error: "Inquiry does not exist or unable to create", type: "newInquiry"});
         }
-
     },
 
     editInquiry: async function(req, res) {
@@ -257,30 +239,32 @@ module.exports = {
             where: {id: req.params.inquiryID},
             return: true,
             plain: true
-        }).catch(function(err) {
-            console.log("editInquiry error: ", err);
-            res.json({error: err.message, type: "editInquiry"});
-            return;
         });
-        console.log("editInquiry success");
-        res.json({success: "Inquiry updated", type: "editInquiry", inquiry: inquiry});
+        if (inquiry) {
+            console.log("editInquiry success");
+            res.json({success: "Inquiry updated", type: "editInquiry", inquiry: inquiry});
+        }else {
+            console.log("editTest null: ", inquiry);
+            res.json({error: "Unable to edit inquiry or does not exist", type:"editInquiry"});
+        }
     },
 
     deleteInquiry: async function(req, res) {
         console.log("Client request deleteInquiry");
         console.log("Client header: ", req.rawHeaders);
 
-        await Inquiry.destroy({
+        const instance = await Inquiry.destroy({
             where: {id: req.params.inquiryID}
-        }).catch(function(err) {
-            console.log("deleteInquiry error: ", err);
-            res.json({error: err.message, type: "deleteInquiry"});
-            return;
         });
-        console.log("deleteInquiry success");
-        res.json({success: "Inquiry deleted", type: "deleteInquiry"});
-    }
+        if (instance) {
+            console.log("deleteInquiry success");
+            res.json({success: "Inquiry deleted", type: "deleteInquiry"});
+        }else {
+            console.log("deleteInquiry error");
+            res.json({error: "Inquiry could not be deleted or does not exist", type: "deleteInquiry"});
+        }
 
+    }
 };
 
 

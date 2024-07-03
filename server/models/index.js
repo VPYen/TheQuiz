@@ -56,13 +56,30 @@ db.category = require("./category.model.js")(sequelize, Sequelize);
 db.test = require("./test.model.js")(sequelize, Sequelize);
 db.inquiry = require("./inquiry.model.js")(sequelize, Sequelize);
 
+
 // Category <- Test - One to Many
-db.category.hasMany(db.test);
-db.test.belongsTo(db.category);
+db.category.hasMany(db.test, {as: "tests", onDestroy: "CASCADE", hooks: true});
+db.test.belongsTo(db.category, {foreignKey: "categoryID", as: "category"});
 
 // Test <- Inquiry - One to Many
-db.test.hasMany(db.inquiry);
-db.inquiry.belongsTo(db.test);
+db.test.hasMany(db.inquiry, {as: "inquiries", onDestroy: "CASCADE", hooks: true});
+db.inquiry.belongsTo(db.test, {foreignKey: "testID", as: "test"});
+
+// Destroy Hooks
+db.category.afterDestroy((instance, options) => {
+    return instance;
+});
+
+
+db.test.afterDestroy((instance, options) => {
+    return instance;
+});
+
+
+db.inquiry.afterDestroy((instance, options) => {
+    return instance;
+});
+
 
 
 module.exports = db;
