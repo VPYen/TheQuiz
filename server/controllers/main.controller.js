@@ -84,17 +84,17 @@ module.exports = {
         console.log("Client header: ", req.rawHeaders);
         console.log("Request Body: ", req.body);
 
-        const category = await Category.update(req.body, {
-            where: {id: req.params.categoryID},
-            return: true,
-            plain: true
-        });
-        if (category) {
-            console.log("editCategory success: ", category);
-            res.json({success: "Category updated", type: "editCategory", category: category});
-        }else {
+        const category = await Category.findByPk(req.params.categoryID);
+        if (category === null) {
             console.log("editCategory null: ", category);
             res.json({error: "Unable to edit category or does not exist", type:"editCategory"});
+        }else {
+            category.set({
+                name: req.body.name
+            });
+            await category.save();
+            console.log("editCategory success: ", category);
+            res.json({success: "Category updated", type: "editCategory", category: category});
         }
     },
 
@@ -159,17 +159,19 @@ module.exports = {
         console.log("Client request editTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const test = await Test.update(req.body, {
-            where: {id: req.params.testID},
-            return: true,
-            plain: true
-        });
-        if (test) {
-            console.log("editTest success");
-            res.json({success: "Test updated", type: "editTest", test: test});
-        }else{
+        const test = await Test.findByPk(req.params.testID);
+
+        if (test === null) {
             console.log("editTest null: ", test);
             res.json({error: "Unable to edit test or does not exist", type:"editTest"});
+        }else{
+            test.set({
+                name: req.body.name,
+                description: req.body.description
+            });
+            await test.save();
+            console.log("editTest success");
+            res.json({success: "Test updated", type: "editTest", test: test});
         }
 
     },
@@ -235,17 +237,21 @@ module.exports = {
         console.log("Client request editInquiry");
         console.log("Client header: ", req.rawHeaders);
 
-        const inquiry = await Inquiry.update(req.body, {
-            where: {id: req.params.inquiryID},
-            return: true,
-            plain: true
-        });
-        if (inquiry) {
-            console.log("editInquiry success");
-            res.json({success: "Inquiry updated", type: "editInquiry", inquiry: inquiry});
-        }else {
+        const inquiry = await Inquiry.findByPk(req.params.inquiryID);
+
+        if (inquiry === null) {
             console.log("editTest null: ", inquiry);
             res.json({error: "Unable to edit inquiry or does not exist", type:"editInquiry"});
+        }else {
+            inquiry.set({
+                question: req.body.question,
+                type: req.body.type,
+                answer: req.body.answer,
+                options: req.body.options
+            });
+            await inquiry.save();
+            console.log("editInquiry success");
+            res.json({success: "Inquiry updated", type: "editInquiry", inquiry: inquiry});
         }
     },
 
