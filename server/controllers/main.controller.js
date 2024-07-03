@@ -75,7 +75,7 @@ module.exports = {
             res.json({success:"Category already exists, returned existing category", type:"newCategory", category: category});
         }else {
             console.log("newCategory null: ", category);
-            res.json({error: "Category does not exist or unable to create", type: "newCategory"});
+            res.json({error: "Does not exist or unable to create", type: "newCategory"});
         }
     },
 
@@ -87,7 +87,7 @@ module.exports = {
         const category = await Category.findByPk(req.params.categoryID);
         if (category === null) {
             console.log("editCategory null: ", category);
-            res.json({error: "Unable to edit category or does not exist", type:"editCategory"});
+            res.json({error: "Unable to edit or does not exist", type:"editCategory"});
         }else {
             category.set({
                 name: req.body.name
@@ -111,7 +111,7 @@ module.exports = {
             res.json({success: "Category deleted", type: "deleteCategory"});
         }else {
             console.log("deleteCategory error");
-            res.json({error: "Category does not exist or could not be deleted", type: "deleteCategory"});
+            res.json({error: "Unable to delete or does not exist", type: "deleteCategory"});
         }
     },
 
@@ -151,7 +151,7 @@ module.exports = {
             res.json({success: "Test already exists, returned existing test", type: "newTest", test: test});
         }else {
             console.log("newTest null: ", test);
-            res.json({error: "Test does not exist or unable to create", type: "newTest"});
+            res.json({error: "Does not exist or unable to create", type: "newTest"});
         }
     },
 
@@ -163,7 +163,7 @@ module.exports = {
 
         if (test === null) {
             console.log("editTest null: ", test);
-            res.json({error: "Unable to edit test or does not exist", type:"editTest"});
+            res.json({error: "Unable to edit or does not exist", type:"editTest"});
         }else{
             test.set({
                 name: req.body.name,
@@ -188,7 +188,7 @@ module.exports = {
             res.json({success: "Test deleted", type: "deleteTest"});
         }else {
             console.log("deleteTest error");
-            res.json({error: "Test does not exist or could not be deleted", type: "deleteTest"});
+            res.json({error: "Unable to delete or does not exist", type: "deleteTest"});
         }
     },
 
@@ -201,7 +201,7 @@ module.exports = {
         const inquiry = await Inquiry.findByPk(req.params.inquiryID);
         if (inquiry === null) {
             console.log("getOneInquiry null: ", inquiry);
-            res.json({error: "Could not find inquiry or does not exist", type: "getOneInquiry"});
+            res.json({error: "Could not find or does not exist", type: "getOneInquiry"});
         }else {
             console.log("getOneInquiry success");
             res.json({success: "Successfully obtained inquiry", type: "getOneInquiry", inquiry: inquiry});
@@ -229,7 +229,7 @@ module.exports = {
             res.json({success: "Inquiry already exists, returned existing inquiry", type: "newInquiry", inquiry: inquiry});
         }else {
             console.log("newInquiry null: ", inquiry);
-            res.json({error: "Inquiry does not exist or unable to create", type: "newInquiry"});
+            res.json({error: "Unable to delete or does not exist", type: "newInquiry"});
         }
     },
 
@@ -241,7 +241,7 @@ module.exports = {
 
         if (inquiry === null) {
             console.log("editTest null: ", inquiry);
-            res.json({error: "Unable to edit inquiry or does not exist", type:"editInquiry"});
+            res.json({error: "Unable to edit or does not exist", type:"editInquiry"});
         }else {
             inquiry.set({
                 question: req.body.question,
@@ -267,7 +267,7 @@ module.exports = {
             res.json({success: "Inquiry deleted", type: "deleteInquiry"});
         }else {
             console.log("deleteInquiry error");
-            res.json({error: "Inquiry could not be deleted or does not exist", type: "deleteInquiry"});
+            res.json({error: "Unable to delete or does not exist", type: "deleteInquiry"});
         }
 
     }
