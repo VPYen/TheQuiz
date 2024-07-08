@@ -32,7 +32,7 @@ module.exports = {
         console.log("Client request getOneCategory");
         console.log("Client header: ", req.rawHeaders);
         
-        const category = await Category.findByPk(req.params.categoryID);
+        const category = await Category.findByPk(req.params.categoryID, {include: ["tests"]});
         if (category === null) {
             console.log("getOneCategory null: ", category);
             res.json({error: "Unable to find or does not exist", type: "getOneCategory"});
@@ -47,7 +47,7 @@ module.exports = {
         console.log("Client request getAllCategories");
         console.log("Client header: ", req.rawHeaders);
         
-        const categories = await Category.findAll();
+        const categories = await Category.findAll({include: {model: Test, as: "tests"}});
         if (categories === null) {
             console("getAllCategories null: ", categories)
             res.json({error: "Unable to find or does not exist", type: "getAllCategories"});
@@ -121,7 +121,7 @@ module.exports = {
         console.log("Client request getOneTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const test = await Test.findByPk(req.params.testID);
+        const test = await Test.findByPk(req.params.testID, {include: {model: Inquiry, as: "inquiries"}});
         if (test === null) {
             console.log("getOneTest null: ", test);
             res.json({error: "Could not find or does not exist", type: "getOneTest"})
@@ -136,23 +136,32 @@ module.exports = {
         console.log("Client request newTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const [test, created] = await Test.findOrCreate({
-            where: {
-                name: req.body.name,
-                description: req.body.description,
-                categoryID: req.params.categoryID
-            },
-        });
-        if (created) {
-            console.log("newTest success");
-            res.json({success: "Successfully created new test", type: "newTest", test: test});
-        }else if (test) {
-            console.log("newTest already exists: ", test);
-            res.json({success: "Test already exists, returned existing test", type: "newTest", test: test});
+        const category = await Category.findByPk(req.params.categoryID, {include: ["tests"]});
+        if (category === null) {
+            console.log("newTest category null: ", category);
+            res.json({error: "Unable to find category or does not exist", type: "newTest"});
         }else {
-            console.log("newTest null: ", test);
-            res.json({error: "Does not exist or unable to create", type: "newTest"});
+            const [test, created] = await Test.findOrCreate({
+                where: {
+                    name: req.body.name,
+                    description: req.body.description,
+                    categoryID: req.params.categoryID
+                },
+            });
+            if (created) {
+                await category.addTest(test);
+                console.log("newTest success");
+                res.json({success: "Successfully created new test", type: "newTest", test: test});
+            }else if (test) {
+                console.log("newTest already exists: ", test);
+                res.json({success: "Test already exists, returned existing test", type: "newTest", test: test});
+            }else {
+                console.log("newTest null: ", test);
+                res.json({error: "Does not exist or unable to create", type: "newTest"});
+            }
         }
+
+
     },
 
     editTest: async function(req, res) {
