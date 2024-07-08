@@ -136,7 +136,7 @@ module.exports = {
         console.log("Client request newTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const category = await Category.findByPk(req.params.categoryID, {include: ["tests"]});
+        const category = await Category.findByPk(req.params.categoryID, {include: {model: Test, as: ["tests"]}});
         if (category === null) {
             console.log("newTest category null: ", category);
             res.json({error: "Unable to find category or does not exist", type: "newTest"});
@@ -221,24 +221,31 @@ module.exports = {
         console.log("Client request newInquiry");
         console.log("Client header: ", req.rawHeaders);
 
-        const [inquiry, created] = await Inquiry.findOrCreate({
-            where: {
-                question: req.body.question,
-                type: req.body.type,
-                answer: req.body.answer,
-                option: req.body.options,
-                testID: req.params.testID
-            }
-        });
-        if (created) {
-            console.log("newInquiry success");
-            res.json({success: "Successfully created new inquiry", type: "newInquiry", inquiry: inquiry});
-        }else if (inquiry) {
-            console.log("newInquiry already exists: ", inquiry);
-            res.json({success: "Inquiry already exists, returned existing inquiry", type: "newInquiry", inquiry: inquiry});
+        const test = await Test.findByPk(req.params.testID, {include: {model: Inquiry, as: "inquiries"}});
+        if (test === null) {
+            console.log("newInquiry null: ", test);
+            res.json({error: "Could not find test or does not exist", type: "newInquiry"})
         }else {
-            console.log("newInquiry null: ", inquiry);
-            res.json({error: "Unable to delete or does not exist", type: "newInquiry"});
+            const [inquiry, created] = await Inquiry.findOrCreate({
+                where: {
+                    question: req.body.question,
+                    type: req.body.type,
+                    answer: req.body.answer,
+                    options: req.body.options,
+                    testID: req.params.testID
+                }
+            });
+            if (created) {
+                await test.addInquiry(inquiry);
+                console.log("newInquiry success");
+                res.json({success: "Successfully created new inquiry", type: "newInquiry", inquiry: inquiry});
+            }else if (inquiry) {
+                console.log("newInquiry already exists: ", inquiry);
+                res.json({success: "Inquiry already exists, returned existing inquiry", type: "newInquiry", inquiry: inquiry});
+            }else {
+                console.log("newInquiry null: ", inquiry);
+                res.json({error: "Unable to delete or does not exist", type: "newInquiry"});
+            }
         }
     },
 
