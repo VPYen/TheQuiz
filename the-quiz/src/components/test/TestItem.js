@@ -2,13 +2,15 @@
 
 // Components
 
-function TestItem(props) {
+function TestItem({key, item, onItemSelect, modalToggle}) {
     return(
-        <tr>
-            <td>
-
-            </td>
-        </tr>
+        <div className="item card m-3 p-2">
+        <div className="card-body">
+            <h5 className="card-title">
+                {item.name}
+            </h5>
+        </div>
+       </div>
     );
 }
 

@@ -9,14 +9,21 @@ function TestsList({items, itemOnSelect}) {
 
     if (items){
         renderObject = items.map(item => {
-           // map items to Test Item 
+            <TestItem
+            key={item.id}
+            item={item}
+            onItemSelect={onItemSelect}
+            modalToggle={modalToggle}
+        />
         });
+    }else {
+        renderObject = <p className="listError">Something went wrong...</p>
     }
 
     return(
-        <table>
-            
-        </table>
+        <div className="list row">
+            {renderObject}
+        </div>
     );
 }
 

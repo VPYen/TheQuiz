@@ -11,7 +11,7 @@ import Service from "../components/Service";
 function Categories(props) {
   const [ categories, setCategories ] = useState(<p className="listError">Something went wrong...</p>);
   const [ showModal, setShowModal ] = useState(false);
-  const [ editType, setEditType ] = useState("edit");;
+  const [ editType, setEditType ] = useState("edit");
   const [ selectedItem, setSelectedItem ] = useState({});
   
   const onItemSelect = (type, item) => {
