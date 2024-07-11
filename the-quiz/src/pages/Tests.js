@@ -33,7 +33,7 @@ function Tests() {
                             modalToggle={handleModalToggle} /> : {};
 
     return (
-        <div id="Tests">
+        <div id="Tests" className="fadeIn">
             <div className="pageHeader mb-4">
                 <h1>{location.state.category ? category.name : <p className="listError">Something went wrong...</p>}</h1>
             </div>

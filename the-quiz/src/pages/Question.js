@@ -10,7 +10,7 @@ function Question() {
   const location = useLocation();
 
   return (
-    <div className="Question">
+    <div className="Question fadeIn">
        <div className="card-body">
             <h1 className="pageHeader mb-4">
                 {location.state.test ? location.state.test.name : 

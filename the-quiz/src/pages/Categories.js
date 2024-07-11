@@ -45,7 +45,7 @@ function Categories(props) {
   }, []);
 
   return (
-    <div id="Categories">
+    <div id="Categories" className="fadeIn">
       <div className="pageHeader mb-4">
         <h1>Categories</h1>
       </div>
