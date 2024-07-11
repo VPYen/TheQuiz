@@ -26,9 +26,8 @@ function Tests() {
         }
       };
 
-    const category = location.state.item ? location.state.item : 
-                    <p className="listError">Something went wrong...</p>;
-    const tests = location.state.item ? 
+    const category = location.state.category;
+    const tests = location.state.category ? 
                 <TestsList items={category.tests} 
                             onItemSelect={onItemSelect} 
                             modalToggle={handleModalToggle} /> : {};
@@ -36,9 +35,9 @@ function Tests() {
     return (
         <div id="Tests">
             <div className="pageHeader mb-4">
-                {category.name}
+                <h1>{location.state.category ? category.name : <p className="listError">Something went wrong...</p>}</h1>
             </div>
-            {tests}
+            {location.state.category ? tests : ""}
         </div>
     );
 }

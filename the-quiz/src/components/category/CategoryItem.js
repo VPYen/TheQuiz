@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 function CategoryItem({key, item, onItemSelect, modalToggle}) {
     const navigate = useNavigate();
 
-    const navigateTest = () => {
-        navigate(`/category/${item.name}`, { state: {id: key, item: item}})
+    const navigateTestPage = () => {
+        navigate(`/category/${item.name}`, { state: {categoryID: key, category: item}});
     };
 
     return(
        <div className="item card m-3 p-2">
-        <div className="card-body" onClick={navigateTest()}>
+        <div className="card-body" onClick={navigateTestPage}>
             <h5 className="card-title">
-                {item.name}
+                {item ? item.name : <p className="listError">Something went wrong...</p>}
             </h5>
         </div>
        </div>
