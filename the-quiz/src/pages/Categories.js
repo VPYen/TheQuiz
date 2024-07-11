@@ -29,13 +29,15 @@ function Categories(props) {
   const getCategories = () => {
     Service.getAllCategories()
     .then(res => {
-      setCategories(<CategoriesList items={res} onItemSelect={onItemSelect} modalToggle={handleModalToggle} />);
+      if (res.success){
+        setCategories(<CategoriesList items={res.categories} onItemSelect={onItemSelect} modalToggle={handleModalToggle} />);
+      }
     });
     console.log(categories);
   };
 
   const onSubmit = async (type, item) => {
-    
+
   };
 
   useEffect(() => {

@@ -4,21 +4,7 @@
 import TestItem from "./TestItem.js";
 
 
-function TestsList({items, itemOnSelect}) {
-    let renderObject;
-
-    if (items){
-        renderObject = items.map(item => {
-            <TestItem
-            key={item.id}
-            item={item}
-            onItemSelect={onItemSelect}
-            modalToggle={modalToggle}
-        />
-        });
-    }else {
-        renderObject = <p className="listError">Something went wrong...</p>
-    }
+function TestsList({items, itemOnSelect, modalToggle}) {
 
     return(
         <div className="list row">
