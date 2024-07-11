@@ -10,6 +10,7 @@ import Footer from "./components/nav/Footer"
 
 // Pages
 import Categories from "./pages/Categories";
+import Tests from "./pages/Tests";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route index element={<Categories />} />
           <Route path="/" exact element={<Categories />} />
+          <Route path="/category/:categoryName" element={<Tests />} />
         </Routes>
       </div>
       <Footer />

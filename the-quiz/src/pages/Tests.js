@@ -1,4 +1,5 @@
 // Libraries
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // Assets
@@ -9,28 +10,33 @@ import TestsList from "../components/test/TestsList";
 
 function Tests() {
     const location = useLocation();
-    const [ category, setCategory ] = useState(<p className="listError">Something went wrong...</p>);
-    const [ tests, setTests] = useState({});
     const [ showModal, setShowModal ] = useState(false);
     const [ editType, setEditType ] = useState("edit");
     const [ selectedItem, setSelectedItem ] = useState({});
 
+    const onItemSelect = (type, item) => {
+        setEditType(type);
+        setSelectedItem(item);
+      };
+      
+      const handleModalToggle = (event) => {
+        setShowModal(event);
+        if(!event) {
+          setSelectedItem({});
+        }
+      };
 
-    getTests = () => {
-        Service.getOneCategory(location.state.id)
-        .then(res => {
-            if (res.success) {
-                setCategory(<h1>{res.category.name}</h1>);
-                setTests(<TestList items={res.category.tests} onItemSelect={onItemSelect} modalToggle={handleModalToggle} />);
-            }
-        });
-        console.log(tests);
-    }
+    const category = location.state.item ? location.state.item : 
+                    <p className="listError">Something went wrong...</p>;
+    const tests = location.state.item ? 
+                <TestsList items={category.tests} 
+                            onItemSelect={onItemSelect} 
+                            modalToggle={handleModalToggle} /> : {};
 
     return (
         <div id="Tests">
             <div className="pageHeader mb-4">
-                {category}
+                {category.name}
             </div>
             {tests}
         </div>

@@ -7,7 +7,7 @@ function CategoryItem({key, item, onItemSelect, modalToggle}) {
     const navigate = useNavigate();
 
     const navigateTest = () => {
-        navigate("/test", { state: {id: key, name: item.name}})
+        navigate(`/category/${item.name}`, { state: {id: key, item: item}})
     };
 
     return(

@@ -20,6 +20,11 @@
   margin-top: 5vh;
 }
 
+.listError {
+  text-align: center;
+  font-size: 25px;
+}
+
 .row {
   margin: 0 auto;
 }

@@ -3,9 +3,8 @@
 
 // Variables
 const baseURL = "http://localhost:8000/api";
+// ***NOTE: Modify baseURL to proper URL for production
 
-
-// NOTE: REPLACE JSON PLACEHOLDERS WITH ACTUAL ONCE API ROUTES HAVE BEEN COMPLETED
 
 const Service = {
 // Login
@@ -17,9 +16,6 @@ const Service = {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -36,9 +32,6 @@ const Service = {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -55,9 +48,6 @@ const Service = {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -75,9 +65,6 @@ const Service = {
                 method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -95,9 +82,6 @@ const Service = {
                 method: "DELETE",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -115,9 +99,6 @@ const Service = {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -134,9 +115,6 @@ const Service = {
                 method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -154,9 +132,6 @@ const Service = {
                 method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -174,9 +149,6 @@ const Service = {
                 method: "DELETE",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -194,9 +166,6 @@ const Service = {
                 method: "GET",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
@@ -213,9 +182,6 @@ const Service = {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -233,9 +199,6 @@ const Service = {
                 method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(body),
@@ -253,9 +216,6 @@ const Service = {
                 method: "DELETE",
                 mode: "cors",
                 cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 redirect: "error",
                 referrerPolicy: "no-referrer",
             });
