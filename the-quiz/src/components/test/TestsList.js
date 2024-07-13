@@ -22,7 +22,7 @@ function TestsList({items, onItemSelect, modalToggle}) {
 
     return(
         <div className="list row">
-            {renderObject}
+            {renderObject.reverse()}
         </div>
     );
 }

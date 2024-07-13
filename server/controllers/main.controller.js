@@ -136,7 +136,7 @@ module.exports = {
         console.log("Client request newTest");
         console.log("Client header: ", req.rawHeaders);
 
-        const category = await Category.findByPk(req.params.categoryID, {include: {model: Test, as: ["tests"]}});
+        const category = await Category.findByPk(req.params.categoryID, {include: {model: Test, as: "tests"}});
         if (category === null) {
             console.log("newTest category null: ", category);
             res.json({error: "Unable to find category or does not exist", type: "newTest"});
@@ -146,7 +146,7 @@ module.exports = {
                     name: req.body.name,
                     description: req.body.description,
                     categoryID: req.params.categoryID
-                },
+                }
             });
             if (created) {
                 await category.addTest(test);
