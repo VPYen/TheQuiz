@@ -31,7 +31,6 @@ function Tests() {
                 <TestsList items={category.tests} 
                             onItemSelect={onItemSelect} 
                             modalToggle={handleModalToggle} /> : {};
-
     return (
         <div id="Tests" className="fadeIn">
             <div className="pageHeader mb-4">

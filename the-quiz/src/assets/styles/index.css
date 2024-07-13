@@ -35,6 +35,9 @@ code {
     monospace;
 }
 
+table {
+  margin: 0 auto;
+}
 
 /**** Transition Parameters ****/
 
